@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ScullyXlife tools, Stella Killfeed setup, and support links.">
+  <meta property="og:title" content="ScullyXlife Links">
+  <meta property="og:description" content="Tools, trusted killfeed setup, and support links.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scullyxlife.github.io/">
+  <title>ScullyXlife Links</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101218;
+      --panel: #181c24;
+      --panel-strong: #202635;
+      --text: #f4f7fb;
+      --muted: #aab3c2;
+      --line: #343c4c;
+      --blue: #5aa7ff;
+      --green: #43c77f;
+      --gold: #f2bc57;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 18px;
+      background:
+        linear-gradient(135deg, rgba(90, 167, 255, 0.16), transparent 36%),
+        linear-gradient(315deg, rgba(67, 199, 127, 0.13), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(100%, 520px);
+    }
+
+    .profile {
+      display: grid;
+      gap: 24px;
+    }
+
+    .header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow);
+      background: var(--panel-strong);
+      object-fit: cover;
+      flex: 0 0 auto;
+    }
+
+    .title {
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      line-height: 0.92;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 74px;
+      padding: 13px 16px 13px 13px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(24, 28, 36, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .link:hover,
+    .link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.42);
+      background: var(--panel-strong);
+      outline: none;
+    }
+
+    .mark {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #071019;
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+
+    .tool .mark {
+      background: var(--blue);
+    }
+
+    .killfeed .mark {
+      background: var(--green);
+    }
+
+    .coffee .mark {
+      background: var(--gold);
+    }
+
+    .copy {
+      min-width: 0;
+    }
+
+    .label {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 760;
+    }
+
+    .desc {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      overflow-wrap: anywhere;
+    }
+
+    .arrow {
+      color: var(--muted);
+      font-size: 1.4rem;
+    }
+
+    footer {
+      margin-top: 18px;
+      color: #7f8998;
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    @media (max-width: 430px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .header {
+        align-items: flex-start;
+      }
+
+      .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+      }
+
+      .link {
+        grid-template-columns: 46px 1fr auto;
+        min-height: 68px;
+        gap: 12px;
+      }
+
+      .mark {
+        width: 46px;
+        height: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="profile">
+    <section class="header" aria-labelledby="page-title">
+      <img
+        class="avatar"
+        src="https://github.com/ScullyXlife.png?size=160"
+        alt="ScullyXlife profile avatar"
+        width="76"
+        height="76"
+      >
+      <div class="title">
+        <h1 id="page-title">ScullyXlife</h1>
+        <p>DayZ tools, trusted killfeed setup, and support links.</p>
+      </div>
+    </section>
+
+    <nav class="links" aria-label="Profile links">
+      <a class="link tool" href="https://scullyxlife.github.io/IC-ToolSuite-App/index.html">
+        <span class="mark" aria-hidden="true">TOOL</span>
+        <span class="copy">
+          <span class="label">My Tool</span>
+          <span class="desc">Open the IC ToolSuite app.</span>
+        </span>
+        <span class="arrow" aria-hidden="true">></span>
+      </a>
+
+      <a class="link killfeed" href="https://stellas-killfeed.com/setup">
+        <span class="mark" aria-hidden="true">FREE</span>
+        <span class="copy">
+          <span class="label">Trusted Killfeed Bot</span>
+          <span class="desc">Set up Stella Killfeed for your server.</span>
+        </span>
+        <span class="arrow" aria-hidden="true">></span>
+      </a>
+
+      <a class="link coffee" href="https://buy.stripe.com/9B6dRbbrp0Ly1y58aRgYU05">
+        <span class="mark" aria-hidden="true">SUP</span>
+        <span class="copy">
+          <span class="label">Coffee?</span>
+          <span class="desc">Support the tools and bot work.</span>
+        </span>
+        <span class="arrow" aria-hidden="true">></span>
+      </a>
+    </nav>
+
+    <footer>scullyxlife.github.io</footer>
+  </main>
+</body>
+</html>
