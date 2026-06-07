@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Install and use Iron Translator, a Discord translator bot hosted by ScullyXlife.">
+  <meta property="og:title" content="Iron Translator">
+  <meta property="og:description" content="Discord translator bot setup, commands, and supported languages.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scullyxlife.github.io/translator/">
+  <link rel="canonical" href="https://scullyxlife.github.io/translator/">
+  <title>Iron Translator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101218;
+      --panel: #181c24;
+      --panel-strong: #202635;
+      --text: #f4f7fb;
+      --muted: #aab3c2;
+      --line: #343c4c;
+      --blue: #5aa7ff;
+      --green: #43c77f;
+      --violet: #9fa8ff;
+      --gold: #f2bc57;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 18px;
+      background:
+        linear-gradient(135deg, rgba(159, 168, 255, 0.16), transparent 36%),
+        linear-gradient(315deg, rgba(67, 199, 127, 0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(100%, 860px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .back {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .back:hover,
+    .back:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      padding: 26px;
+      background: rgba(24, 28, 36, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .title-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .mark {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      background: var(--violet);
+      color: #071019;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 4.25rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 15px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #071019;
+      background: var(--violet);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: transparent;
+      border-color: var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    section {
+      padding: 20px;
+      background: rgba(24, 28, 36, 0.78);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    ol,
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+    }
+
+    .language-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .language-list li {
+      margin: 0;
+      padding: 7px 10px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="topbar" aria-label="Page navigation">
+      <a class="back" href="https://scullyxlife.github.io/">Back to links</a>
+      <span>Discord translator bot</span>
+    </nav>
+
+    <header class="hero">
+      <div class="title-row">
+        <span class="mark" aria-hidden="true">TRN</span>
+        <h1>Iron Translator</h1>
+      </div>
+      <p class="lead">A Discord translator bot hosted by ScullyXlife. It translates live in Discord, runs on local translation models, and does not store user messages or translated text.</p>
+      <div class="actions">
+        <a class="button" href="https://discord.com/oauth2/authorize?client_id=1513222527915393175&amp;scope=bot%20applications.commands&amp;permissions=3072">Install Iron Translator</a>
+        <a class="button secondary" href="#commands">View Commands</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section aria-labelledby="setup-title">
+        <h2 id="setup-title">Guild Setup</h2>
+        <ol>
+          <li>Use <strong>Install Iron Translator</strong> and choose the Discord server you manage.</li>
+          <li>In that server, run <code>/subscription action:install</code>.</li>
+          <li>Use the Subscribe button from that command. That checkout is tied to your guild ID.</li>
+          <li>After payment clears, the bot unlocks that guild automatically. This can take about a minute.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="requirements-title">
+        <h2 id="requirements-title">Requirements</h2>
+        <ul>
+          <li>You need Administrator or Manage Server permission to unlock a guild.</li>
+          <li>The bot needs View Channels, Send Messages, and app command access.</li>
+          <li>Use the bot-generated Subscribe button. The raw payment link does not attach your guild ID.</li>
+          <li>Translation output is private by default.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section id="commands" aria-labelledby="commands-title">
+      <h2 id="commands-title">Commands</h2>
+      <ul>
+        <li><code>/translate text:...</code> translates text. Source language auto-detects unless you choose one.</li>
+        <li><code>/languages</code> shows the current languages installed on the bot.</li>
+        <li><code>/translator_status</code> shows runtime status and whether your guild is unlocked.</li>
+        <li><code>/subscription action:install</code> creates the guild-tied install and subscription flow.</li>
+        <li><code>/subscription action:status</code> checks subscription/guild binding status.</li>
+        <li><code>/subscription action:release</code> releases a subscription-bound guild when supported.</li>
+        <li><code>Apps -> Translate message</code> opens the right-click message translator.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="languages-title">
+      <h2 id="languages-title">Currently Supported Languages</h2>
+      <ul class="language-list">
+        <li>Arabic (ar)</li>
+        <li>Chinese (zh)</li>
+        <li>Chinese traditional (zt)</li>
+        <li>Dutch (nl)</li>
+        <li>English (en)</li>
+        <li>French (fr)</li>
+        <li>German (de)</li>
+        <li>Hindi (hi)</li>
+        <li>Italian (it)</li>
+        <li>Japanese (ja)</li>
+        <li>Korean (ko)</li>
+        <li>Polish (pl)</li>
+        <li>Portuguese (pt)</li>
+        <li>Portuguese Brazil (pb)</li>
+        <li>Russian (ru)</li>
+        <li>Spanish (es)</li>
+        <li>Turkish (tr)</li>
+        <li>Ukrainian (uk)</li>
+      </ul>
+      <p class="note">Use <code>/languages</code> in Discord for the live list if models are added later.</p>
+    </section>
+  </main>
+</body>
+</html>
