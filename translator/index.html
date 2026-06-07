@@ -275,7 +275,8 @@
         <li><code>/subscription action:status</code> checks subscription/guild binding status.</li>
         <li><code>/subscription action:release</code> releases a subscription-bound guild when supported.</li>
         <li><code>/auto_translate action:set</code> lets a server manager turn on public auto-translation for a channel.</li>
-        <li><code>/auto_translate action:list</code> and <code>/auto_translate action:remove</code> manage configured auto-translate channels.</li>
+        <li><code>/auto_translate action:set role:@German source:German target:English bidirectional:true</code> follows a language role across the guild.</li>
+        <li><code>/auto_translate action:list</code> and <code>/auto_translate action:remove</code> manage configured auto-translate channels and roles.</li>
         <li><code>Apps -> Translate message</code> opens the right-click message translator.</li>
       </ul>
     </section>
@@ -333,7 +334,7 @@
         <li>Urdu (ur)</li>
         <li>Vietnamese (vi)</li>
       </ul>
-      <p class="note">Use <code>/languages</code> in Discord for the live list if models are added later. Auto-translation replies publicly in the configured channel.</p>
+      <p class="note">Use <code>/languages</code> in Discord for the live list if models are added later. Auto-translation replies publicly, skips weak detection results, and is best for clear full sentences.</p>
     </section>
   </main>
 </body>
