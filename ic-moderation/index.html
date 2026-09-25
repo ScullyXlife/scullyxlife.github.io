@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet IC Moderation: Discord moderation, support tickets, community tools, and a web dashboard. Explore current features, development plans, and installation.">
+  <meta name="theme-color" content="#101218">
+  <meta property="og:title" content="IC Moderation — Discord server management">
+  <meta property="og:description" content="Moderate your server, organize support, and build your community from one dashboard. See what is available and what is next.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scullyxlife.github.io/ic-moderation/">
+  <meta property="og:image" content="https://scullyxlife.github.io/ic-moderation/ic-moderation-emblem.png">
+  <meta property="og:image:alt" content="IC Moderation silver and teal emblem">
+  <link rel="canonical" href="https://scullyxlife.github.io/ic-moderation/">
+  <link rel="icon" type="image/png" href="ic-moderation-emblem.png">
+  <title>IC Moderation — Features, roadmap &amp; install</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101218;
+      --panel: #181c24;
+      --text: #f4f7fb;
+      --muted: #b2bdcb;
+      --line: #343e4b;
+      --teal: #77d7cf;
+      --gold: #f2cc85;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      padding: 28px 22px 32px;
+      background: radial-gradient(ellipse at 85% 0, #173536 0, transparent 35%), var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--teal); text-underline-offset: 4px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--teal); outline-offset: 5px; border-radius: 3px; }
+    .skip { position: absolute; top: -100px; left: 22px; z-index: 2; padding: 12px; background: var(--bg); }
+    .skip:focus { top: 10px; }
+    .shell { width: min(100%, 1060px); margin-inline: auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px 28px; flex-wrap: wrap; margin-bottom: 34px; }
+    .back { color: var(--text); font-weight: 700; text-decoration: none; padding-block: 10px; }
+    .nav-links { display: flex; gap: 6px 24px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--muted); font-size: .92rem; padding-block: 10px; text-decoration: none; }
+    .nav-links a:hover { color: var(--teal); }
+    main { display: grid; gap: 52px; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(2.5rem, 6.5vw, 4.9rem); line-height: 1.03; letter-spacing: -.04em; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -.02em; }
+    h3 { font-size: 1.05rem; line-height: 1.4; }
+    .eyebrow { color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 36px;
+      align-items: center;
+      padding: 44px;
+      border: 1px solid #405255;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #1c252e, #172323);
+    }
+    .hero .eyebrow { margin-bottom: 16px; }
+    .tagline { font-size: clamp(1.1rem, 2.4vw, 1.4rem); margin-top: 18px; color: var(--text); }
+    .lead { color: var(--muted); max-width: 57ch; margin-top: 12px; }
+    .emblem { width: 100%; height: auto; display: block; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 46px; padding: 11px 18px; border: 1px solid var(--teal); border-radius: 7px; color: #102223; background: var(--teal); font-weight: 750; text-decoration: none; }
+    .button:hover { background: #a5e9e3; border-color: #a5e9e3; }
+    .button.secondary { color: var(--text); background: transparent; border-color: #788b95; }
+    .button.secondary:hover { background: #283b3e; }
+    .hint { color: var(--muted); font-size: .84rem; margin-top: 12px; }
+    .section-intro { display: flex; gap: 20px; justify-content: space-between; align-items: flex-end; margin-bottom: 22px; }
+    .section-intro .eyebrow { margin-bottom: 8px; }
+    .section-intro > p { color: var(--muted); max-width: 40ch; font-size: .94rem; }
+    .features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .feature { border: 1px solid var(--line); border-radius: 8px; padding: 23px; background: var(--panel); }
+    .feature h3 { color: var(--text); }
+    .feature p { margin-top: 8px; color: var(--muted); font-size: .95rem; }
+    .latest { margin-top: 16px; padding: 22px 24px; border-left: 3px solid var(--teal); background: #19292b; }
+    .latest h3 { color: var(--teal); }
+    .latest p { color: var(--muted); margin-top: 7px; font-size: .94rem; }
+    .roadmap { padding: 30px; border: 1px solid var(--line); border-radius: 10px; background: #171c24; }
+    .roadmap > p { color: var(--muted); margin-top: 12px; max-width: 78ch; }
+    .roadmap .eyebrow { margin-bottom: 9px; }
+    .roadmap-list { margin-top: 26px; display: grid; gap: 0; }
+    .roadmap-item { display: grid; grid-template-columns: 115px minmax(0, 1fr); gap: 20px; align-items: start; padding-block: 20px; border-top: 1px solid var(--line); }
+    .roadmap-item p { color: var(--muted); margin-top: 6px; font-size: .94rem; }
+    .status { display: inline-block; width: fit-content; border: 1px solid #62737d; border-radius: 5px; padding: 3px 9px; font-size: .73rem; font-weight: 750; text-transform: uppercase; letter-spacing: .05em; color: #cad7e0; }
+    .status.discovery { color: var(--gold); border-color: #776648; }
+    .roadmap .reviewed { font-size: .8rem; margin-top: 14px; }
+    .setup { border-top: 1px solid var(--line); padding-top: 34px; }
+    .setup .eyebrow { margin-bottom: 8px; }
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; padding: 0; margin: 26px 0 0; list-style: none; counter-reset: setup; }
+    .steps li { counter-increment: setup; }
+    .steps li::before { content: "0" counter(setup); display: block; color: var(--teal); font-size: .85rem; font-weight: 800; margin-bottom: 10px; }
+    .steps p { color: var(--muted); margin-top: 7px; font-size: .94rem; }
+    footer { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding-top: 26px; margin-top: 46px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    @media (max-width: 760px) {
+      body { padding: 20px 16px 28px; }
+      .hero { padding: 28px; grid-template-columns: minmax(0, 1fr) 140px; gap: 20px; }
+      .section-intro { display: block; }
+      .section-intro > p { margin-top: 12px; max-width: none; }
+      .steps { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      main { gap: 36px; }
+      .topbar { margin-bottom: 20px; }
+      .nav-links { column-gap: 20px; }
+      .hero { display: flex; flex-direction: column-reverse; align-items: flex-start; padding: 24px; }
+      .emblem { width: 100px; }
+      .hero .eyebrow { margin-bottom: 12px; }
+      .features { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .button { width: 100%; }
+      .roadmap { padding: 23px; }
+      .roadmap-item { grid-template-columns: 1fr; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <nav class="topbar" aria-label="Page navigation">
+      <a class="back" href="/">&#8592; ScullyXlife links</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#development">Development</a>
+        <a href="#setup">Get started</a>
+      </div>
+    </nav>
+    <main id="main" tabindex="-1">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Your Discord. Better organized.</p>
+          <h1>IC Moderation</h1>
+          <p class="tagline">Keep your community moving.</p>
+          <p class="lead">Moderation, support tickets, and community tools for the people running a Discord server. Manage the bot through a web dashboard, with settings for your server’s channels, roles, and workflows.</p>
+          <div class="actions">
+            <a class="button" href="https://ironchronicle.studio/login">Sign in to install</a>
+            <a class="button secondary" href="https://ironchronicle.studio/">Open dashboard</a>
+          </div>
+          <p class="hint">Sign in with Discord, then choose “Add bot to a server.”</p>
+        </div>
+        <img class="emblem" src="ic-moderation-emblem.png" alt="" width="1254" height="1254" fetchpriority="high">
+      </header>
+
+      <section id="features" aria-labelledby="features-title">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">Available now</p>
+            <h2 id="features-title">Tools for the everyday work.</h2>
+          </div>
+          <p>Choose and configure the modules your server needs. Features run according to their settings and the bot’s Discord permissions.</p>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <h3>Moderation &amp; automod</h3>
+            <p>Manage warnings, timeouts, kicks, and bans with case history, reasons, and evidence. Configure automod rules and channel or role restrictions.</p>
+          </article>
+          <article class="feature">
+            <h3>Support tickets</h3>
+            <p>Publish ticket panels, organize private support channels, and manage assignments, priorities, tags, and notes. Use saved replies and retain transcripts.</p>
+          </article>
+          <article class="feature">
+            <h3>Onboarding &amp; role panels</h3>
+            <p>Configure welcome and leave messages, starter roles, and verification tracking. Publish role buttons or menus with prerequisites and selection limits.</p>
+          </article>
+          <article class="feature">
+            <h3>Community &amp; leveling</h3>
+            <p>Reward participation with XP, leaderboards, and role rewards. Run polls and giveaways, collect suggestions, and highlight community posts with a starboard.</p>
+          </article>
+          <article class="feature">
+            <h3>Custom commands &amp; replies</h3>
+            <p>Create reusable responses with text, embeds, or interactive layouts. Set cooldowns, choose allowed channels and roles, and configure follow-up responses.</p>
+          </article>
+          <article class="feature">
+            <h3>Temporary voice rooms</h3>
+            <p>Let members create a room by joining a configured voice channel. Provide room owner controls, role restrictions, capacity settings, and automatic cleanup.</p>
+          </article>
+          <article class="feature">
+            <h3>Scheduling &amp; publishing</h3>
+            <p>Manage bookings, schedule announcements and reminders, and configure supported content feeds. Review delivery records from the dashboard.</p>
+          </article>
+          <article class="feature">
+            <h3>A dashboard for your team</h3>
+            <p>Manage server settings, review audit history, and control module activation. Use the policy inspector to understand saved channel and role restrictions.</p>
+          </article>
+        </div>
+        <aside class="latest" aria-labelledby="latest-title">
+          <h3 id="latest-title">Latest addition: effective policy inspection</h3>
+          <p>Choose a channel and roles to inspect the saved rules for custom commands, automod, message XP, and server utilities. See activation, restrictions, limits, and missing references before editing. This inspects configuration; actual actions still depend on Discord permissions and runtime conditions.</p>
+        </aside>
+      </section>
+
+      <section class="roadmap" id="development" aria-labelledby="development-title">
+        <p class="eyebrow">Current development focus</p>
+        <h2 id="development-title">Clearer controls. Easier recovery.</h2>
+        <p>Administration and recovery is the active development phase. The first policy inspector is shipped; the next work below is planned and is not yet available. Priorities may change as each part is tested.</p>
+        <div class="roadmap-list">
+          <article class="roadmap-item">
+            <span class="status">Up next</span>
+            <div><h3>Broader policy coverage</h3><p>Extend inspection and shared rule handling to polls, giveaways, starboard, and temporary voice rooms.</p></div>
+          </article>
+          <article class="roadmap-item">
+            <span class="status">Planned</span>
+            <div><h3>Feature health &amp; guided fixes</h3><p>Make it clearer when a feature is off, needs configuration, or is missing permissions, with links to the relevant settings.</p></div>
+          </article>
+          <article class="roadmap-item">
+            <span class="status">Planned</span>
+            <div><h3>Safer configuration backup &amp; restore</h3><p>Add change previews, channel and role mapping, and conflict handling, with imported configurations kept inactive until reviewed.</p></div>
+          </article>
+          <article class="roadmap-item">
+            <span class="status discovery">Discovery</span>
+            <div><h3>Template-based server setup</h3><p>Explore applying a reviewed channel and role layout to an existing server. Template formats and the first implementation are still being worked out.</p></div>
+          </article>
+        </div>
+        <p class="reviewed">Feature and development status reviewed <time datetime="2026-09-25">September 25, 2026</time>.</p>
+      </section>
+
+      <section class="setup" id="setup" aria-labelledby="setup-title">
+        <p class="eyebrow">Get started</p>
+        <h2 id="setup-title">Bring IC Moderation to your server.</h2>
+        <ol class="steps" role="list">
+          <li><h3>Sign in with Discord</h3><p>Use the account that manages your server. The install flow starts with a secure Discord sign-in.</p></li>
+          <li><h3>Add the bot</h3><p>Choose “Add bot to a server” in the dashboard, select your server, and review the permissions requested by Discord.</p></li>
+          <li><h3>Configure your modules</h3><p>Return to the dashboard, choose the server, and set up the channels, roles, and features you want to activate.</p></li>
+        </ol>
+        <div class="actions">
+          <a class="button" href="https://ironchronicle.studio/login">Sign in to install</a>
+          <a class="button secondary" href="https://ironchronicle.studio/">Open dashboard</a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>IC Moderation · By ScullyXlife</span>
+      <a href="/">Back to all tools &amp; links</a>
+    </footer>
+  </div>
+</body>
+</html>
